@@ -17,7 +17,14 @@
       "label": "Aşama 3 – Benzer uyaranlar",
       "description": "Hedef kavrama benzer çeldiriciler (aynı üst kategori).",
       "similarity": "high",
-      "enabled": false
+      "enabled": true
+    },
+    "4": {
+      "id": 4,
+      "label": "Aşama 4 – Genellemeyi güçlendirme",
+      "description": "Hedef kavram için çok farklı örnekler ve karışık çeldiriciler.",
+      "similarity": "mixed",
+      "enabled": true
     }
   },
   "concepts": [
@@ -32,7 +39,8 @@
       "stages": {
         "1": { "active": true },
         "2": { "active": true },
-        "3": { "active": false }
+        "3": { "active": true },
+        "4": { "active": true }
       },
       "features": [
         "taşıt",
@@ -72,7 +80,8 @@
       "stages": {
         "1": { "active": true },
         "2": { "active": true },
-        "3": { "active": false }
+        "3": { "active": true },
+        "4": { "active": true }
       },
       "features": [
         "canlı",
@@ -108,7 +117,8 @@
       "stages": {
         "1": { "active": true },
         "2": { "active": true },
-        "3": { "active": false }
+        "3": { "active": true },
+        "4": { "active": true }
       },
       "features": [
         "yenir",
@@ -141,7 +151,8 @@
       "stages": {
         "1": { "active": true },
         "2": { "active": true },
-        "3": { "active": false }
+        "3": { "active": true },
+        "4": { "active": true }
       },
       "features": [
         "nesne",
@@ -174,7 +185,8 @@
       "stages": {
         "1": { "active": true },
         "2": { "active": true },
-        "3": { "active": false }
+        "3": { "active": true },
+        "4": { "active": true }
       },
       "features": [
         "canlı",

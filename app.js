@@ -4,6 +4,9 @@ const state = {
   currentConcept: null,
   currentStage: 1,
   currentTrial: null,
+  stage1CorrectCount: 0,
+  stage2CorrectCount: 0,
+  stage3CorrectCount: 0,
   audioEnabled: true,
   highContrast: false,
   isLocked: false // geri bildirim animasyonu sırasında tıklamayı engelle
@@ -103,12 +106,35 @@ function getConceptEmoji(conceptId) {
 }
 
 function buildTrial(concept, stageId) {
-  // Aşama 1–2: hedef sabit, görseller çoklu temsil, çeldirici "easy"
-  const targets = concept.targets;
-  let distractorsPool = concept.distractors.easy || [];
+  // Aşama davranışları:
+  // 1: Hedef = sadece "photo" tipleri, çeldirici = easy (çok alakasız).
+  // 2: Hedef = tüm tipler, çeldirici = easy.
+  // 3: Hedef = tüm tipler, çeldirici = similar (benzer uyaranlar).
+  // 4: Hedef = tüm tipler, çeldirici = easy + similar karışık (genelleme güçlendirme).
 
-  if (stageId === 2) {
-    // Stage 2: sadece temsil çeşitlenir, çeldirici hâlâ alakasız (easy)
+  let targets;
+  if (stageId === 1) {
+    const photoTargets = concept.targets.filter((t) => t.type === 'photo');
+    targets = photoTargets.length > 0 ? photoTargets : concept.targets;
+  } else {
+    targets = concept.targets;
+  }
+
+  let distractorsPool = [];
+  if (stageId === 3) {
+    distractorsPool = concept.distractors.similar || [];
+    if (distractorsPool.length === 0) {
+      // Güvenlik: similar yoksa easy'ye düş
+      distractorsPool = concept.distractors.easy || [];
+    }
+  } else if (stageId === 4) {
+    const easy = concept.distractors.easy || [];
+    const similar = concept.distractors.similar || [];
+    distractorsPool = [...easy, ...similar];
+    if (distractorsPool.length === 0) {
+      distractorsPool = easy;
+    }
+  } else {
     distractorsPool = concept.distractors.easy || [];
   }
 
@@ -134,7 +160,7 @@ function getStageLabel(stageId) {
   const stagesMeta = state.data.stages || {};
   const meta = stagesMeta[String(stageId)];
   if (!meta) return `Aşama ${stageId}`;
-  return `${meta.id} – ${meta.label.replace('Aşama ', '')}`;
+  return meta.label;
 }
 
 function setCardContent(cardEl, item) {
@@ -182,6 +208,9 @@ function startConcept(conceptId) {
   const concept = state.data.concepts.find((c) => c.id === conceptId);
   state.currentConcept = concept;
   state.currentStage = 1; // v1: Aşama 1-2, 1’den başla
+  state.stage1CorrectCount = 0;
+  state.stage2CorrectCount = 0;
+  state.stage3CorrectCount = 0;
   state.currentTrial = buildTrial(concept, state.currentStage);
 
   showScreen('practice');
@@ -191,9 +220,8 @@ function startConcept(conceptId) {
 function scheduleNextTrial(delayMs = 700) {
   window.setTimeout(() => {
     if (!state.currentConcept) return;
-    // Stage 1-2 arasında basit dönüşüm: her 3 denemede 1 kere Stage 2
-    const random = Math.random();
-    state.currentStage = random < 0.33 ? 2 : 1;
+    // Aşamalar sırayla ve kademeli ilerler:
+    // Stage 1'de yeterince doğru yanıt alındıktan sonra Stage 2'ye geçilir.
     state.currentTrial = buildTrial(state.currentConcept, state.currentStage);
     state.isLocked = false;
     renderTrial();
@@ -226,6 +254,32 @@ function handleChoice(side) {
     dom.feedbackText.textContent = `BU ${state.currentConcept.label}`;
     dom.feedbackText.className = 'feedback-text correct';
     speak(state.currentConcept.audio.correct);
+
+    // Aşama ilerleme mantığı:
+    // 1 -> 2: Stage 1'de yeterince doğru (ör. 6) tepki.
+    // 2 -> 3: Stage 2'de yeterince doğru (ör. 8) tepki.
+    // 3 -> 4: Stage 3'te yeterince doğru (ör. 10) tepki.
+    const stagesCfg = state.currentConcept.stages || {};
+
+    if (state.currentStage === 1) {
+      state.stage1CorrectCount += 1;
+      const canGo2 = stagesCfg['2']?.active;
+      if (canGo2 && state.stage1CorrectCount >= 6) {
+        state.currentStage = 2;
+      }
+    } else if (state.currentStage === 2) {
+      state.stage2CorrectCount += 1;
+      const canGo3 = stagesCfg['3']?.active;
+      if (canGo3 && state.stage2CorrectCount >= 8) {
+        state.currentStage = 3;
+      }
+    } else if (state.currentStage === 3) {
+      state.stage3CorrectCount += 1;
+      const canGo4 = stagesCfg['4']?.active;
+      if (canGo4 && state.stage3CorrectCount >= 10) {
+        state.currentStage = 4;
+      }
+    }
 
     scheduleNextTrial(900);
   } else {
