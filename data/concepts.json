@@ -1,0 +1,202 @@
+{
+  "stages": {
+    "1": {
+      "id": 1,
+      "label": "Aşama 1 – Ayırt etmeye giriş",
+      "description": "1 hedef, 1 çok alakasız çeldirici.",
+      "similarity": "low"
+    },
+    "2": {
+      "id": 2,
+      "label": "Aşama 2 – Görsel çeşitlendirme",
+      "description": "Hedef kavram sabit, görseller tür ve stil olarak değişir.",
+      "similarity": "low"
+    },
+    "3": {
+      "id": 3,
+      "label": "Aşama 3 – Benzer uyaranlar",
+      "description": "Hedef kavrama benzer çeldiriciler (aynı üst kategori).",
+      "similarity": "high",
+      "enabled": false
+    }
+  },
+  "concepts": [
+    {
+      "id": "car",
+      "label": "ARABA",
+      "questionTemplate": "Hangisi ARABA?",
+      "audio": {
+        "correct": "Bu araba.",
+        "incorrect": "Bu araba değil."
+      },
+      "stages": {
+        "1": { "active": true },
+        "2": { "active": true },
+        "3": { "active": false }
+      },
+      "features": [
+        "taşıt",
+        "tekerlekli",
+        "insan taşır",
+        "yolda gider"
+      ],
+      "targets": [
+        { "id": "car_sedan_photo", "type": "photo", "src": "placeholder", "emoji": "🚗" },
+        { "id": "car_suv_photo", "type": "photo", "src": "placeholder", "emoji": "🚙" },
+        { "id": "car_taxi_illustration", "type": "illustration", "src": "placeholder", "emoji": "🚕" },
+        { "id": "car_race_illustration", "type": "illustration", "src": "placeholder", "emoji": "🏎️" },
+        { "id": "car_bw_outline", "type": "bw", "src": "placeholder", "emoji": "🚗" },
+        { "id": "car_icon_simple", "type": "icon", "src": "placeholder", "emoji": "🚗" }
+      ],
+      "distractors": {
+        "easy": [
+          { "id": "apple_easy", "concept": "fruit", "type": "photo", "src": "placeholder", "emoji": "🍎" },
+          { "id": "ball_easy", "concept": "object", "type": "illustration", "src": "placeholder", "emoji": "⚽" },
+          { "id": "chair_easy", "concept": "object", "type": "photo", "src": "placeholder", "emoji": "🪑" }
+        ],
+        "similar": [
+          { "id": "bus_similar", "concept": "vehicle", "type": "photo", "src": "placeholder", "emoji": "🚌" },
+          { "id": "truck_similar", "concept": "vehicle", "type": "photo", "src": "placeholder", "emoji": "🚚" },
+          { "id": "motorbike_similar", "concept": "vehicle", "type": "photo", "src": "placeholder", "emoji": "🏍️" }
+        ]
+      }
+    },
+    {
+      "id": "animal",
+      "label": "HAYVAN",
+      "questionTemplate": "Hangisi HAYVAN?",
+      "audio": {
+        "correct": "Bu hayvan.",
+        "incorrect": "Bu hayvan değil."
+      },
+      "stages": {
+        "1": { "active": true },
+        "2": { "active": true },
+        "3": { "active": false }
+      },
+      "features": [
+        "canlı",
+        "hareket eder",
+        "nefes alır"
+      ],
+      "targets": [
+        { "id": "dog_photo_1", "type": "photo", "src": "placeholder", "emoji": "🐶" },
+        { "id": "cat_photo_1", "type": "photo", "src": "placeholder", "emoji": "🐱" },
+        { "id": "bird_illustration_1", "type": "illustration", "src": "placeholder", "emoji": "🐦" },
+        { "id": "cow_illustration_1", "type": "illustration", "src": "placeholder", "emoji": "🐮" },
+        { "id": "fish_bw_1", "type": "bw", "src": "placeholder", "emoji": "🐟" },
+        { "id": "animal_icon_1", "type": "icon", "src": "placeholder", "emoji": "🐾" }
+      ],
+      "distractors": {
+        "easy": [
+          { "id": "chair_easy_a", "concept": "object", "type": "photo", "src": "placeholder", "emoji": "🪑" },
+          { "id": "apple_easy_a", "concept": "fruit", "type": "photo", "src": "placeholder", "emoji": "🍎" }
+        ],
+        "similar": [
+          { "id": "toy_animal_similar", "concept": "toy", "type": "photo", "src": "placeholder", "emoji": "🧸" }
+        ]
+      }
+    },
+    {
+      "id": "fruit",
+      "label": "MEYVE",
+      "questionTemplate": "Hangisi MEYVE?",
+      "audio": {
+        "correct": "Bu meyve.",
+        "incorrect": "Bu meyve değil."
+      },
+      "stages": {
+        "1": { "active": true },
+        "2": { "active": true },
+        "3": { "active": false }
+      },
+      "features": [
+        "yenir",
+        "bitkiden gelir",
+        "çekirdek içerebilir"
+      ],
+      "targets": [
+        { "id": "apple_photo_1", "type": "photo", "src": "placeholder", "emoji": "🍎" },
+        { "id": "banana_photo_1", "type": "photo", "src": "placeholder", "emoji": "🍌" },
+        { "id": "orange_illustration_1", "type": "illustration", "src": "placeholder", "emoji": "🍊" },
+        { "id": "strawberry_illustration_1", "type": "illustration", "src": "placeholder", "emoji": "🍓" },
+        { "id": "grape_bw_1", "type": "bw", "src": "placeholder", "emoji": "🍇" },
+        { "id": "fruit_icon_1", "type": "icon", "src": "placeholder", "emoji": "🍏" }
+      ],
+      "distractors": {
+        "easy": [
+          { "id": "car_easy_f", "concept": "car", "type": "photo", "src": "placeholder", "emoji": "🚗" }
+        ],
+        "similar": []
+      }
+    },
+    {
+      "id": "object",
+      "label": "EŞYA",
+      "questionTemplate": "Hangisi EŞYA?",
+      "audio": {
+        "correct": "Bu eşya.",
+        "incorrect": "Bu eşya değil."
+      },
+      "stages": {
+        "1": { "active": true },
+        "2": { "active": true },
+        "3": { "active": false }
+      },
+      "features": [
+        "nesne",
+        "dokunulabilir",
+        "evde bulunabilir"
+      ],
+      "targets": [
+        { "id": "chair_photo_1", "type": "photo", "src": "placeholder", "emoji": "🪑" },
+        { "id": "table_photo_1", "type": "photo", "src": "placeholder", "emoji": "🛋️" },
+        { "id": "cup_illustration_1", "type": "illustration", "src": "placeholder", "emoji": "☕" },
+        { "id": "lamp_illustration_1", "type": "illustration", "src": "placeholder", "emoji": "💡" },
+        { "id": "spoon_bw_1", "type": "bw", "src": "placeholder", "emoji": "🥄" },
+        { "id": "object_icon_1", "type": "icon", "src": "placeholder", "emoji": "📦" }
+      ],
+      "distractors": {
+        "easy": [
+          { "id": "banana_easy_o", "concept": "fruit", "type": "photo", "src": "placeholder", "emoji": "🍌" }
+        ],
+        "similar": []
+      }
+    },
+    {
+      "id": "human",
+      "label": "İNSAN",
+      "questionTemplate": "Hangisi İNSAN?",
+      "audio": {
+        "correct": "Bu insan.",
+        "incorrect": "Bu insan değil."
+      },
+      "stages": {
+        "1": { "active": true },
+        "2": { "active": true },
+        "3": { "active": false }
+      },
+      "features": [
+        "canlı",
+        "konuşur",
+        "yürür"
+      ],
+      "targets": [
+        { "id": "adult_photo_1", "type": "photo", "src": "placeholder", "emoji": "🧑" },
+        { "id": "child_photo_1", "type": "photo", "src": "placeholder", "emoji": "🧒" },
+        { "id": "person_illustration_1", "type": "illustration", "src": "placeholder", "emoji": "🙂" },
+        { "id": "group_illustration_1", "type": "illustration", "src": "placeholder", "emoji": "👨‍👩‍👧" },
+        { "id": "human_bw_1", "type": "bw", "src": "placeholder", "emoji": "👤" },
+        { "id": "human_icon_1", "type": "icon", "src": "placeholder", "emoji": "🚻" }
+      ],
+      "distractors": {
+        "easy": [
+          { "id": "dog_easy_h", "concept": "animal", "type": "photo", "src": "placeholder", "emoji": "🐶" }
+        ],
+        "similar": []
+      }
+    }
+  ]
+}
+
+

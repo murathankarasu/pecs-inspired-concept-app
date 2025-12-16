@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dijital Kavram Öğretimi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="app" class="app">
+      <header class="app-header">
+        <div class="brand">
+          <span class="brand-mark"></span>
+          <span class="brand-text">Dijital Kavram Öğretimi</span>
+        </div>
+        <button id="settingsButton" class="icon-button" aria-label="Ayarlar">
+          ⚙
+        </button>
+      </header>
+
+      <main class="app-main">
+        <!-- Concept Selection Screen -->
+        <section id="screen-concept-select" class="screen active" aria-label="Kavram seçimi">
+          <div class="screen-header">
+            <h1 class="title">Hangi kavramla başlayalım?</h1>
+            <p class="subtitle">
+              Öğretmen veya veli, çalışmak istediği kavramı seçer. Sistem tek bir resmi değil, kavramı ve genellemeyi öğretir.
+            </p>
+          </div>
+          <div id="conceptList" class="concept-grid" aria-live="polite"></div>
+        </section>
+
+        <!-- Practice Screen -->
+        <section id="screen-practice" class="screen" aria-label="Alıştırma ekranı">
+          <div class="screen-header">
+            <button id="backToConcepts" class="link-button">&larr; Kavramlara dön</button>
+            <h1 id="practiceQuestion" class="title">Hangisi ARABA?</h1>
+            <p id="practiceMeta" class="practice-meta" aria-live="polite">
+              Kavram: <span id="metaConceptLabel">ARABA</span> · Aşama: <span id="metaStageLabel">1 – Ayırt etmeye giriş</span>
+            </p>
+          </div>
+
+          <div class="cards-row" role="group" aria-label="Seçenekler">
+            <button class="choice-card" id="choiceLeft" data-side="left">
+              <div class="card-image-wrapper">
+                <div class="card-emoji" aria-hidden="true"></div>
+                <img alt="" class="card-image" />
+              </div>
+            </button>
+            <button class="choice-card" id="choiceRight" data-side="right">
+              <div class="card-image-wrapper">
+                <div class="card-emoji" aria-hidden="true"></div>
+                <img alt="" class="card-image" />
+              </div>
+            </button>
+          </div>
+
+          <div class="feedback-row" aria-live="assertive" aria-atomic="true">
+            <span id="feedbackText" class="feedback-text"></span>
+          </div>
+        </section>
+
+        <!-- Settings Modal -->
+        <section
+          id="settingsModal"
+          class="modal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="settingsTitle"
+          aria-hidden="true"
+        >
+          <div class="modal-backdrop"></div>
+          <div class="modal-content">
+            <header class="modal-header">
+              <h2 id="settingsTitle">Ayarlar</h2>
+              <button id="closeSettings" class="icon-button" aria-label="Kapat">✕</button>
+            </header>
+            <div class="modal-body">
+              <div class="setting-item">
+                <div class="setting-text">
+                  <span class="setting-title">Sesli geri bildirim</span>
+                  <span class="setting-desc">“Bu araba.” / “Bu araba değil.”</span>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="toggleAudio" checked />
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="setting-item">
+                <div class="setting-text">
+                  <span class="setting-title">Yüksek kontrast modu</span>
+                  <span class="setting-desc">Az gören kullanıcılar için sade ve belirgin kartlar</span>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="toggleHighContrast" />
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <span class="footer-text">
+          Kavram öğretimi, çoklu temsil ve genelleme odaklı basit web uygulaması (v1).
+        </span>
+      </footer>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
+
+
