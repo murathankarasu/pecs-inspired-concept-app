@@ -29,7 +29,7 @@
   },
   "concepts": [
     {
-      "id": "car",
+      "id": "araba",
       "label": "ARABA",
       "questionTemplate": "Hangisi ARABA?",
       "audio": {
@@ -42,111 +42,29 @@
         "3": { "active": true },
         "4": { "active": true }
       },
-      "features": [
-        "taşıt",
-        "tekerlekli",
-        "insan taşır",
-        "yolda gider"
-      ],
+      "features": ["taşıt", "tekerlekli", "yolda gider"],
       "targets": [
-        { "id": "car_sedan_photo", "type": "photo", "src": "placeholder", "emoji": "🚗" },
-        { "id": "car_suv_photo", "type": "photo", "src": "placeholder", "emoji": "🚙" },
-        { "id": "car_taxi_illustration", "type": "illustration", "src": "placeholder", "emoji": "🚕" },
-        { "id": "car_race_illustration", "type": "illustration", "src": "placeholder", "emoji": "🏎️" },
-        { "id": "car_bw_outline", "type": "bw", "src": "placeholder", "emoji": "🚗" },
-        { "id": "car_icon_simple", "type": "icon", "src": "placeholder", "emoji": "🚗" }
+        { "id": "araba_gercek", "type": "photo", "src": "kavramlar/araba/gerçek.jpg" },
+        { "id": "araba_cizim", "type": "illustration", "src": "kavramlar/araba/çizim.jpg" },
+        { "id": "araba_animasyon", "type": "illustration", "src": "kavramlar/araba/animasyon.jpg" },
+        { "id": "araba_ikon", "type": "icon", "src": "kavramlar/araba/ikon.jpg" },
+        { "id": "araba_oyuncak", "type": "photo", "src": "kavramlar/araba/oyuncak.jpg" }
       ],
       "distractors": {
         "easy": [
-          { "id": "apple_easy", "concept": "fruit", "type": "photo", "src": "placeholder", "emoji": "🍎" },
-          { "id": "ball_easy", "concept": "object", "type": "illustration", "src": "placeholder", "emoji": "⚽" },
-          { "id": "chair_easy", "concept": "object", "type": "photo", "src": "placeholder", "emoji": "🪑" }
-        ],
-        "similar": [
-          { "id": "bus_similar", "concept": "vehicle", "type": "photo", "src": "placeholder", "emoji": "🚌" },
-          { "id": "truck_similar", "concept": "vehicle", "type": "photo", "src": "placeholder", "emoji": "🚚" },
-          { "id": "motorbike_similar", "concept": "vehicle", "type": "photo", "src": "placeholder", "emoji": "🏍️" }
-        ]
-      }
-    },
-    {
-      "id": "animal",
-      "label": "HAYVAN",
-      "questionTemplate": "Hangisi HAYVAN?",
-      "audio": {
-        "correct": "Bu hayvan.",
-        "incorrect": "Bu hayvan değil."
-      },
-      "stages": {
-        "1": { "active": true },
-        "2": { "active": true },
-        "3": { "active": true },
-        "4": { "active": true }
-      },
-      "features": [
-        "canlı",
-        "hareket eder",
-        "nefes alır"
-      ],
-      "targets": [
-        { "id": "dog_photo_1", "type": "photo", "src": "placeholder", "emoji": "🐶" },
-        { "id": "cat_photo_1", "type": "photo", "src": "placeholder", "emoji": "🐱" },
-        { "id": "bird_illustration_1", "type": "illustration", "src": "placeholder", "emoji": "🐦" },
-        { "id": "cow_illustration_1", "type": "illustration", "src": "placeholder", "emoji": "🐮" },
-        { "id": "fish_bw_1", "type": "bw", "src": "placeholder", "emoji": "🐟" },
-        { "id": "animal_icon_1", "type": "icon", "src": "placeholder", "emoji": "🐾" }
-      ],
-      "distractors": {
-        "easy": [
-          { "id": "chair_easy_a", "concept": "object", "type": "photo", "src": "placeholder", "emoji": "🪑" },
-          { "id": "apple_easy_a", "concept": "fruit", "type": "photo", "src": "placeholder", "emoji": "🍎" }
-        ],
-        "similar": [
-          { "id": "toy_animal_similar", "concept": "toy", "type": "photo", "src": "placeholder", "emoji": "🧸" }
-        ]
-      }
-    },
-    {
-      "id": "fruit",
-      "label": "MEYVE",
-      "questionTemplate": "Hangisi MEYVE?",
-      "audio": {
-        "correct": "Bu meyve.",
-        "incorrect": "Bu meyve değil."
-      },
-      "stages": {
-        "1": { "active": true },
-        "2": { "active": true },
-        "3": { "active": true },
-        "4": { "active": true }
-      },
-      "features": [
-        "yenir",
-        "bitkiden gelir",
-        "çekirdek içerebilir"
-      ],
-      "targets": [
-        { "id": "apple_photo_1", "type": "photo", "src": "placeholder", "emoji": "🍎" },
-        { "id": "banana_photo_1", "type": "photo", "src": "placeholder", "emoji": "🍌" },
-        { "id": "orange_illustration_1", "type": "illustration", "src": "placeholder", "emoji": "🍊" },
-        { "id": "strawberry_illustration_1", "type": "illustration", "src": "placeholder", "emoji": "🍓" },
-        { "id": "grape_bw_1", "type": "bw", "src": "placeholder", "emoji": "🍇" },
-        { "id": "fruit_icon_1", "type": "icon", "src": "placeholder", "emoji": "🍏" }
-      ],
-      "distractors": {
-        "easy": [
-          { "id": "car_easy_f", "concept": "car", "type": "photo", "src": "placeholder", "emoji": "🚗" }
+          { "id": "top_easy", "concept": "top", "type": "photo", "src": "kavramlar/top/gerçek top.jpg" },
+          { "id": "pasta_easy", "concept": "pasta", "type": "photo", "src": "kavramlar/pasta/gerçek.jpg" }
         ],
         "similar": []
       }
     },
     {
-      "id": "object",
-      "label": "EŞYA",
-      "questionTemplate": "Hangisi EŞYA?",
+      "id": "köpek",
+      "label": "KÖPEK",
+      "questionTemplate": "Hangisi KÖPEK?",
       "audio": {
-        "correct": "Bu eşya.",
-        "incorrect": "Bu eşya değil."
+        "correct": "Bu köpek.",
+        "incorrect": "Bu köpek değil."
       },
       "stages": {
         "1": { "active": true },
@@ -154,33 +72,29 @@
         "3": { "active": true },
         "4": { "active": true }
       },
-      "features": [
-        "nesne",
-        "dokunulabilir",
-        "evde bulunabilir"
-      ],
+      "features": ["canlı", "havlar", "dört ayak"],
       "targets": [
-        { "id": "chair_photo_1", "type": "photo", "src": "placeholder", "emoji": "🪑" },
-        { "id": "table_photo_1", "type": "photo", "src": "placeholder", "emoji": "🛋️" },
-        { "id": "cup_illustration_1", "type": "illustration", "src": "placeholder", "emoji": "☕" },
-        { "id": "lamp_illustration_1", "type": "illustration", "src": "placeholder", "emoji": "💡" },
-        { "id": "spoon_bw_1", "type": "bw", "src": "placeholder", "emoji": "🥄" },
-        { "id": "object_icon_1", "type": "icon", "src": "placeholder", "emoji": "📦" }
+        { "id": "kopek_gercek", "type": "photo", "src": "kavramlar/köpek/gerçek.jpg" },
+        { "id": "kopek_cizim", "type": "illustration", "src": "kavramlar/köpek/çizim.jpg" },
+        { "id": "kopek_animasyon", "type": "illustration", "src": "kavramlar/köpek/animasyon.jpg" },
+        { "id": "kopek_ikon", "type": "icon", "src": "kavramlar/köpek/ikon.jpg" },
+        { "id": "kopek_oyuncak", "type": "photo", "src": "kavramlar/köpek/oyuncak.jpg" }
       ],
       "distractors": {
         "easy": [
-          { "id": "banana_easy_o", "concept": "fruit", "type": "photo", "src": "placeholder", "emoji": "🍌" }
+          { "id": "kedi_easy", "concept": "kedi", "type": "photo", "src": "kavramlar/kedi/gerçek.jpg" },
+          { "id": "top_easy_k", "concept": "top", "type": "photo", "src": "kavramlar/top/gerçek top.jpg" }
         ],
         "similar": []
       }
     },
     {
-      "id": "human",
-      "label": "İNSAN",
-      "questionTemplate": "Hangisi İNSAN?",
+      "id": "kedi",
+      "label": "KEDİ",
+      "questionTemplate": "Hangisi KEDİ?",
       "audio": {
-        "correct": "Bu insan.",
-        "incorrect": "Bu insan değil."
+        "correct": "Bu kedi.",
+        "incorrect": "Bu kedi değil."
       },
       "stages": {
         "1": { "active": true },
@@ -188,27 +102,200 @@
         "3": { "active": true },
         "4": { "active": true }
       },
-      "features": [
-        "canlı",
-        "konuşur",
-        "yürür"
-      ],
+      "features": ["canlı", "miyavlar", "dört ayak"],
       "targets": [
-        { "id": "adult_photo_1", "type": "photo", "src": "placeholder", "emoji": "🧑" },
-        { "id": "child_photo_1", "type": "photo", "src": "placeholder", "emoji": "🧒" },
-        { "id": "person_illustration_1", "type": "illustration", "src": "placeholder", "emoji": "🙂" },
-        { "id": "group_illustration_1", "type": "illustration", "src": "placeholder", "emoji": "👨‍👩‍👧" },
-        { "id": "human_bw_1", "type": "bw", "src": "placeholder", "emoji": "👤" },
-        { "id": "human_icon_1", "type": "icon", "src": "placeholder", "emoji": "🚻" }
+        { "id": "kedi_gercek", "type": "photo", "src": "kavramlar/kedi/gerçek.jpg" },
+        { "id": "kedi_cizim", "type": "illustration", "src": "kavramlar/kedi/çizim.jpg" },
+        { "id": "kedi_animasyon", "type": "illustration", "src": "kavramlar/kedi/animasyon.jpg" },
+        { "id": "kedi_ikon", "type": "icon", "src": "kavramlar/kedi/ikon.jpg" },
+        { "id": "kedi_oyuncak", "type": "photo", "src": "kavramlar/kedi/oyuncak.jpg" }
       ],
       "distractors": {
         "easy": [
-          { "id": "dog_easy_h", "concept": "animal", "type": "photo", "src": "placeholder", "emoji": "🐶" }
+          { "id": "kopek_easy", "concept": "köpek", "type": "photo", "src": "kavramlar/köpek/gerçek.jpg" },
+          { "id": "gunes_easy", "concept": "güneş", "type": "photo", "src": "kavramlar/güneş/gerçek.jpg" }
+        ],
+        "similar": []
+      }
+    },
+    {
+      "id": "kuş",
+      "label": "KUŞ",
+      "questionTemplate": "Hangisi KUŞ?",
+      "audio": {
+        "correct": "Bu kuş.",
+        "incorrect": "Bu kuş değil."
+      },
+      "stages": {
+        "1": { "active": true },
+        "2": { "active": true },
+        "3": { "active": true },
+        "4": { "active": true }
+      },
+      "features": ["canlı", "uçar", "kanatlı"],
+      "targets": [
+        { "id": "kus_gercek", "type": "photo", "src": "kavramlar/kuş/gerçek.jpg" },
+        { "id": "kus_cizim", "type": "illustration", "src": "kavramlar/kuş/çizim.jpg" },
+        { "id": "kus_animasyon", "type": "illustration", "src": "kavramlar/kuş/animasyon.jpg" },
+        { "id": "kus_ikon", "type": "icon", "src": "kavramlar/kuş/ikon.jpg" },
+        { "id": "kus_oyuncak", "type": "photo", "src": "kavramlar/kuş/oyuncak.jpg" }
+      ],
+      "distractors": {
+        "easy": [
+          { "id": "agac_easy", "concept": "ağaç", "type": "photo", "src": "kavramlar/ağaç/gerçek.jpg" },
+          { "id": "bisiklet_easy", "concept": "bisiklet", "type": "photo", "src": "kavramlar/bisiklet/gerçek.jpg" }
+        ],
+        "similar": []
+      }
+    },
+    {
+      "id": "pasta",
+      "label": "PASTA",
+      "questionTemplate": "Hangisi PASTA?",
+      "audio": {
+        "correct": "Bu pasta.",
+        "incorrect": "Bu pasta değil."
+      },
+      "stages": {
+        "1": { "active": true },
+        "2": { "active": true },
+        "3": { "active": true },
+        "4": { "active": true }
+      },
+      "features": ["yenir", "tatlı", "pişmiş"],
+      "targets": [
+        { "id": "pasta_gercek", "type": "photo", "src": "kavramlar/pasta/gerçek.jpg" },
+        { "id": "pasta_cizim", "type": "illustration", "src": "kavramlar/pasta/çizim.jpg" },
+        { "id": "pasta_animasyon", "type": "illustration", "src": "kavramlar/pasta/animasyon.jpg" },
+        { "id": "pasta_ikon", "type": "icon", "src": "kavramlar/pasta/ikon.jpg" },
+        { "id": "pasta_oyuncak", "type": "photo", "src": "kavramlar/pasta/oyuncak.jpg" }
+      ],
+      "distractors": {
+        "easy": [
+          { "id": "araba_easy_p", "concept": "araba", "type": "photo", "src": "kavramlar/araba/gerçek.jpg" },
+          { "id": "kedi_easy_p", "concept": "kedi", "type": "photo", "src": "kavramlar/kedi/gerçek.jpg" }
+        ],
+        "similar": []
+      }
+    },
+    {
+      "id": "top",
+      "label": "TOP",
+      "questionTemplate": "Hangisi TOP?",
+      "audio": {
+        "correct": "Bu top.",
+        "incorrect": "Bu top değil."
+      },
+      "stages": {
+        "1": { "active": true },
+        "2": { "active": true },
+        "3": { "active": true },
+        "4": { "active": true }
+      },
+      "features": ["yuvarlak", "oyun", "atılır"],
+      "targets": [
+        { "id": "top_gercek", "type": "photo", "src": "kavramlar/top/gerçek top.jpg" },
+        { "id": "top_cizim", "type": "illustration", "src": "kavramlar/top/çizim.jpg" },
+        { "id": "top_animasyon", "type": "illustration", "src": "kavramlar/top/animasyon.jpg" },
+        { "id": "top_ikon", "type": "icon", "src": "kavramlar/top/ikon.jpg" }
+      ],
+      "distractors": {
+        "easy": [
+          { "id": "gunes_easy_t", "concept": "güneş", "type": "photo", "src": "kavramlar/güneş/gerçek.jpg" },
+          { "id": "pasta_easy_t", "concept": "pasta", "type": "photo", "src": "kavramlar/pasta/gerçek.jpg" }
+        ],
+        "similar": []
+      }
+    },
+    {
+      "id": "bisiklet",
+      "label": "BİSİKLET",
+      "questionTemplate": "Hangisi BİSİKLET?",
+      "audio": {
+        "correct": "Bu bisiklet.",
+        "incorrect": "Bu bisiklet değil."
+      },
+      "stages": {
+        "1": { "active": true },
+        "2": { "active": true },
+        "3": { "active": true },
+        "4": { "active": true }
+      },
+      "features": ["taşıt", "pedallı", "iki teker"],
+      "targets": [
+        { "id": "bisiklet_gercek", "type": "photo", "src": "kavramlar/bisiklet/gerçek.jpg" },
+        { "id": "bisiklet_cizim", "type": "illustration", "src": "kavramlar/bisiklet/çizim.jpg" },
+        { "id": "bisiklet_animasyon", "type": "illustration", "src": "kavramlar/bisiklet/animasyon.jpg" },
+        { "id": "bisiklet_ikon", "type": "icon", "src": "kavramlar/bisiklet/ikon.jpg" },
+        { "id": "bisiklet_oyuncak", "type": "photo", "src": "kavramlar/bisiklet/oyuncak.jpg" }
+      ],
+      "distractors": {
+        "easy": [
+          { "id": "agac_easy_b", "concept": "ağaç", "type": "photo", "src": "kavramlar/ağaç/gerçek.jpg" },
+          { "id": "kedi_easy_b", "concept": "kedi", "type": "photo", "src": "kavramlar/kedi/gerçek.jpg" }
+        ],
+        "similar": []
+      }
+    },
+    {
+      "id": "güneş",
+      "label": "GÜNEŞ",
+      "questionTemplate": "Hangisi GÜNEŞ?",
+      "audio": {
+        "correct": "Bu güneş.",
+        "incorrect": "Bu güneş değil."
+      },
+      "stages": {
+        "1": { "active": true },
+        "2": { "active": true },
+        "3": { "active": true },
+        "4": { "active": true }
+      },
+      "features": ["gökyüzü", "ısıtır", "ışık verir"],
+      "targets": [
+        { "id": "gunes_gercek", "type": "photo", "src": "kavramlar/güneş/gerçek.jpg" },
+        { "id": "gunes_cizim", "type": "illustration", "src": "kavramlar/güneş/çizim.jpg" },
+        { "id": "gunes_animasyon", "type": "illustration", "src": "kavramlar/güneş/animasyon.jpg" },
+        { "id": "gunes_ikon", "type": "icon", "src": "kavramlar/güneş/ikon.jpg" },
+        { "id": "gunes_oyuncak", "type": "photo", "src": "kavramlar/güneş/oyuncak.jpg" }
+      ],
+      "distractors": {
+        "easy": [
+          { "id": "top_easy_g", "concept": "top", "type": "photo", "src": "kavramlar/top/gerçek top.jpg" },
+          { "id": "araba_easy_g", "concept": "araba", "type": "photo", "src": "kavramlar/araba/gerçek.jpg" }
+        ],
+        "similar": []
+      }
+    },
+    {
+      "id": "ağaç",
+      "label": "AĞAÇ",
+      "questionTemplate": "Hangisi AĞAÇ?",
+      "audio": {
+        "correct": "Bu ağaç.",
+        "incorrect": "Bu ağaç değil."
+      },
+      "stages": {
+        "1": { "active": true },
+        "2": { "active": true },
+        "3": { "active": true },
+        "4": { "active": true }
+      },
+      "features": ["bitki", "yeşil", "gövdeli"],
+      "targets": [
+        { "id": "agac_gercek", "type": "photo", "src": "kavramlar/ağaç/gerçek.jpg" },
+        { "id": "agac_cizim", "type": "illustration", "src": "kavramlar/ağaç/çizim.jpg" },
+        { "id": "agac_animasyon", "type": "illustration", "src": "kavramlar/ağaç/animasyon.jpg" },
+        { "id": "agac_ikon", "type": "icon", "src": "kavramlar/ağaç/ikon.jpg" },
+        { "id": "agac_oyuncak", "type": "photo", "src": "kavramlar/ağaç/oyuncak.jpg" }
+      ],
+      "distractors": {
+        "easy": [
+          { "id": "pasta_easy_a", "concept": "pasta", "type": "photo", "src": "kavramlar/pasta/gerçek.jpg" },
+          { "id": "bisiklet_easy_a", "concept": "bisiklet", "type": "photo", "src": "kavramlar/bisiklet/gerçek.jpg" }
         ],
         "similar": []
       }
     }
   ]
 }
-
-

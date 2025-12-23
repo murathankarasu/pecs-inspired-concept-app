@@ -4,13 +4,20 @@
     <meta charset="UTF-8" />
     <title>Dijital Kavram Öğretimi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Nunito:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="./assets/images/logo.png" type="image/png" />
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <div id="app" class="app">
       <header class="app-header">
         <div class="brand">
-          <span class="brand-mark"></span>
+          <img src="./assets/images/logo.png" alt="Logo" class="brand-logo" />
           <span class="brand-text">Dijital Kavram Öğretimi</span>
         </div>
         <button id="settingsButton" class="icon-button" aria-label="Ayarlar">
@@ -19,8 +26,41 @@
       </header>
 
       <main class="app-main">
+        <!-- Onboarding Screen -->
+        <section id="screen-onboarding" class="screen active" aria-label="Karşılama">
+          <div class="onboarding-hero">
+            <div class="onboarding-copy">
+              <p class="eyebrow">Çocuk Dostu Eğitim</p>
+              <h1 class="title hero-title">Kavramları oyun tadında keşfet</h1>
+              <p class="subtitle hero-subtitle">
+                Tek resme ezber yok. Çoklu temsil, ayırt etme ve genelleme odaklı basit web deneyimi.
+              </p>
+              <div class="onboarding-actions">
+                <button id="startOnboarding" class="primary-button">Haydi Başlayalım</button>
+                <div class="pill pill-soft">
+                  <span class="pill-dot"></span>
+                  <span>4 aşamalı pedagojik akış</span>
+                </div>
+              </div>
+              <ul class="onboarding-list">
+                <li>• Çoklu görsel temsil (foto / çizim / bw / ikon)</li>
+                <li>• Yanlışta modelleme + aynı denemeyi tekrar</li>
+                <li>• Sesli geri bildirim + yüksek kontrast modu</li>
+              </ul>
+            </div>
+            <div class="onboarding-illustration">
+              <div class="hero-bubble">🍎 🍌 🚗 🐶 👤</div>
+              <div class="hero-card-stack">
+                <div class="hero-card">🚗</div>
+                <div class="hero-card ghost">🍎</div>
+                <div class="hero-card ghost">🐶</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- Concept Selection Screen -->
-        <section id="screen-concept-select" class="screen active" aria-label="Kavram seçimi">
+        <section id="screen-concept-select" class="screen" aria-label="Kavram seçimi">
           <div class="screen-header">
             <h1 class="title">Hangi kavramla başlayalım?</h1>
             <p class="subtitle">
@@ -112,5 +152,4 @@
     <script src="./app.js"></script>
   </body>
 </html>
-
 

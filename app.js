@@ -21,6 +21,7 @@ function $(id) {
 function initDomRefs() {
   dom.screenConceptSelect = $('screen-concept-select');
   dom.screenPractice = $('screen-practice');
+  dom.screenOnboarding = $('screen-onboarding');
   dom.conceptList = $('conceptList');
   dom.practiceQuestion = $('practiceQuestion');
   dom.choiceLeft = $('choiceLeft');
@@ -35,6 +36,7 @@ function initDomRefs() {
   dom.toggleAudio = $('toggleAudio');
   dom.toggleHighContrast = $('toggleHighContrast');
   dom.backToConcepts = $('backToConcepts');
+  dom.startOnboarding = $('startOnboarding');
 }
 
 async function loadData() {
@@ -44,7 +46,10 @@ async function loadData() {
 
 function showScreen(name) {
   const isPractice = name === 'practice';
-  dom.screenConceptSelect.classList.toggle('active', !isPractice);
+  const isConcepts = name === 'conceptSelect';
+  const isOnboarding = name === 'onboarding';
+  dom.screenOnboarding.classList.toggle('active', isOnboarding);
+  dom.screenConceptSelect.classList.toggle('active', isConcepts);
   dom.screenPractice.classList.toggle('active', isPractice);
 }
 
@@ -59,6 +64,7 @@ function speak(text) {
 function renderConcepts() {
   dom.conceptList.innerHTML = '';
   state.data.concepts.forEach((concept) => {
+    const previewSrc = getConceptPreviewSrc(concept);
     const emoji = getConceptEmoji(concept.id);
     const btn = document.createElement('button');
     btn.className = 'concept-card';
@@ -66,6 +72,7 @@ function renderConcepts() {
     btn.innerHTML = `
       <div class="concept-label">
         <span class="concept-emoji">${emoji}</span>
+        <img class="concept-thumb" alt="${concept.label}" />
         <span>${concept.label}</span>
       </div>
       <div class="concept-tagline">${concept.questionTemplate}</div>
@@ -77,6 +84,16 @@ function renderConcepts() {
         <span>${Object.keys(concept.stages).length} aşama</span>
       </div>
     `;
+    const thumbEl = btn.querySelector('.concept-thumb');
+    const emojiEl = btn.querySelector('.concept-emoji');
+    if (thumbEl && previewSrc) {
+      thumbEl.src = previewSrc;
+      thumbEl.style.display = 'inline-flex';
+      if (emojiEl) {
+        emojiEl.style.display = 'none';
+      }
+    }
+
     btn.addEventListener('click', () => {
       startConcept(concept.id);
     });
@@ -88,21 +105,94 @@ function pickRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
+function pickRandomDifferent(arr, item, maxTries = 4) {
+  if (!arr.length) return null;
+  let candidate = pickRandom(arr);
+  for (let i = 0; i < maxTries; i += 1) {
+    if (!item || (candidate.id !== item.id && candidate.src !== item.src)) {
+      return candidate;
+    }
+    candidate = pickRandom(arr);
+  }
+  const fallback = arr.find(
+    (entry) => !item || (entry.id !== item.id && entry.src !== item.src)
+  );
+  return fallback || candidate;
+}
+
 function getConceptEmoji(conceptId) {
   switch (conceptId) {
-    case 'car':
+    case 'araba':
       return '🚗';
-    case 'animal':
+    case 'köpek':
       return '🐶';
-    case 'fruit':
-      return '🍎';
-    case 'object':
-      return '🪑';
-    case 'human':
-      return '🧑';
+    case 'kedi':
+      return '🐱';
+    case 'kuş':
+      return '🐦';
+    case 'pasta':
+      return '🍰';
+    case 'top':
+      return '⚽';
+    case 'bisiklet':
+      return '🚲';
+    case 'güneş':
+      return '☀️';
+    case 'ağaç':
+      return '🌳';
     default:
       return '🔹';
   }
+}
+
+function getConceptPreviewSrc(concept) {
+  const item = concept?.targets?.[0];
+  return item?.src ? buildAssetPath(item.src) : '';
+}
+
+function buildAssetPath(src) {
+  return `./assets/images/${encodeURI(src)}`;
+}
+
+const conceptGroups = {
+  vehicles: ['araba', 'bisiklet'],
+  animals: ['köpek', 'kedi', 'kuş'],
+  food: ['pasta'],
+  nature: ['güneş', 'ağaç'],
+  object: ['top']
+};
+
+function getGroupForConcept(conceptId) {
+  return Object.keys(conceptGroups).find((group) =>
+    conceptGroups[group].includes(conceptId)
+  );
+}
+
+function collectTargetsByConceptIds(conceptIds) {
+  if (!state.data) return [];
+  const byId = new Map(state.data.concepts.map((c) => [c.id, c]));
+  const items = [];
+  conceptIds.forEach((id) => {
+    const concept = byId.get(id);
+    if (!concept?.targets) return;
+    concept.targets.forEach((target) => {
+      items.push({ ...target, concept: id });
+    });
+  });
+  return items;
+}
+
+function getDynamicPools(concept) {
+  const group = getGroupForConcept(concept.id);
+  const allConceptIds = state.data.concepts.map((c) => c.id);
+  const sameGroupIds = conceptGroups[group] || [];
+  const similarIds = sameGroupIds.filter((id) => id !== concept.id);
+  const easyIds = allConceptIds.filter((id) => !sameGroupIds.includes(id));
+
+  return {
+    similar: collectTargetsByConceptIds(similarIds),
+    easy: collectTargetsByConceptIds(easyIds)
+  };
 }
 
 function buildTrial(concept, stageId) {
@@ -120,26 +210,26 @@ function buildTrial(concept, stageId) {
     targets = concept.targets;
   }
 
+  const dynamicPools = getDynamicPools(concept);
   let distractorsPool = [];
   if (stageId === 3) {
-    distractorsPool = concept.distractors.similar || [];
+    const similar = concept.distractors.similar || [];
+    distractorsPool = [...similar, ...dynamicPools.similar];
     if (distractorsPool.length === 0) {
-      // Güvenlik: similar yoksa easy'ye düş
-      distractorsPool = concept.distractors.easy || [];
+      const easy = concept.distractors.easy || [];
+      distractorsPool = [...easy, ...dynamicPools.easy];
     }
   } else if (stageId === 4) {
     const easy = concept.distractors.easy || [];
     const similar = concept.distractors.similar || [];
-    distractorsPool = [...easy, ...similar];
-    if (distractorsPool.length === 0) {
-      distractorsPool = easy;
-    }
+    distractorsPool = [...easy, ...similar, ...dynamicPools.easy, ...dynamicPools.similar];
   } else {
-    distractorsPool = concept.distractors.easy || [];
+    const easy = concept.distractors.easy || [];
+    distractorsPool = [...easy, ...dynamicPools.easy];
   }
 
   const target = pickRandom(targets);
-  const distractor = pickRandom(distractorsPool);
+  const distractor = pickRandomDifferent(distractorsPool, target);
 
   // 2 kartın konumunu karıştır
   const leftIsTarget = Math.random() < 0.5;
@@ -168,18 +258,21 @@ function setCardContent(cardEl, item) {
   const img = cardEl.querySelector('.card-image');
   const conceptLabel = state.currentConcept ? state.currentConcept.label : '';
 
+  const imageSrc = item.src ? buildAssetPath(item.src) : '';
   // Hedef görselin kendi emojisi varsa onu kullan, yoksa kavram emojisine düş
   const baseEmoji = getConceptEmoji(state.currentConcept?.id);
   let emoji = item.emoji || baseEmoji;
 
   if (emojiEl) {
     emojiEl.textContent = emoji;
+    emojiEl.style.display = imageSrc ? 'none' : 'block';
   }
 
   // Erişilebilirlik için alt açıklama dursun
   if (img) {
     img.alt = conceptLabel;
-    img.src = '';
+    img.src = imageSrc;
+    img.style.display = imageSrc ? 'block' : 'none';
   }
 }
 
@@ -338,6 +431,12 @@ function bindEvents() {
     state.isLocked = false;
     showScreen('conceptSelect');
   });
+
+  if (dom.startOnboarding) {
+    dom.startOnboarding.addEventListener('click', () => {
+      showScreen('conceptSelect');
+    });
+  }
 }
 
 async function bootstrap() {
@@ -345,8 +444,7 @@ async function bootstrap() {
   await loadData();
   renderConcepts();
   bindEvents();
+  showScreen('onboarding');
 }
 
 window.addEventListener('DOMContentLoaded', bootstrap);
-
-
